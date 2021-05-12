@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getUser: user => {
-				fetch("https://3001-black-goat-ylmo220h.ws-us03.gitpod.io/api/user", {
+				fetch("https://3001-coral-chimpanzee-4tuap7br.ws-us04.gitpod.io/api/user", {
 					method: "GET",
 					body: JSON.stringify(user),
 					headers: { "Content-type": "application/json;" }
@@ -63,7 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//Register action begins
 			setRegister: user => {
-				fetch("https://3001-black-goat-ylmo220h.ws-us03.gitpod.io/api/register", {
+				fetch("https://3001-coral-chimpanzee-4tuap7br.ws-us04.gitpod.io/api/register", {
 					method: "POST",
 					body: JSON.stringify(user),
 					headers: { "Content-type": "application/json;" }
@@ -77,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			setUpdate: user => {
-				fetch("https://3001-black-goat-ylmo220h.ws-us03.gitpod.io/user/id", {
+				fetch("https://3001-coral-chimpanzee-4tuap7br.ws-us04.gitpod.io/user/id", {
 					method: "PUT",
 					body: JSON.stringify(user),
 					headers: { "Content-type": "application/json;" }
@@ -92,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//Login Accition begins
 			setLogin: user => {
-				fetch("https://3001-black-goat-ylmo220h.ws-us03.gitpod.io/api/login", {
+				fetch("https://3001-coral-chimpanzee-4tuap7br.ws-us04.gitpod.io/api/login", {
 					method: "POST",
 					body: JSON.stringify(user),
 					headers: { "Content-type": "application/json;" }
@@ -114,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getMessage: () => {
-				fetch("https://3001-black-goat-ylmo220h.ws-us03.gitpod.io/api/hello")
+				fetch("https://3001-coral-chimpanzee-4tuap7br.ws-us04.gitpod.io/api/hello")
 					.then(resp => resp.json())
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
