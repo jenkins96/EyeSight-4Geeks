@@ -6,6 +6,12 @@ const RecognitionAi = () => {
 	const [language, setLanguage] = useState("en");
 	const [transLan, setTransLan] = useState("es");
 	const { store, actions } = useContext(Context);
+	const [favorite, setFavorite] = useState("false");
+
+	const setFavoriteTrue = element => {
+		setFavorite(element);
+		actions.setFavorite({ favorite: store.Favorite });
+	};
 
 	const handlerClickRandom = e => {
 		fnUrl();
@@ -88,11 +94,18 @@ const RecognitionAi = () => {
 										id="exampleFormControlSelect1"
 										onChange={e => setLanguage(e.target.value)}>
 										<option value={"en"}>English</option>
-										<option value={"es"}>Spanish </option>
-										<option value={"nl"}>Dutch </option>
-										<option value={"fr"}>French </option>
-										<option value={"de"}>German </option>
-										<option value={"ru"}>Russian </option>
+										<option value={"es"}>Spanish</option>
+										<option value={"pt"}>Portuguese</option>
+										<option value={"it"}>Italian</option>
+										<option value={"fr"}>French</option>
+										<option value={"tr"}>Turkish</option>
+										<option value={"pl"}>Polish</option>
+										<option value={"nl"}>Dutch</option>
+										<option value={"de"}>German</option>
+										<option value={"ru"}>Russian</option>
+										<option value={"ar"}>Arabic</option>
+										<option value={"ja"}>Japanese</option>
+										<option value={"zh"}>Chinese (Simplified)</option>
 									</select>
 								</div>
 							</div>
@@ -104,17 +117,23 @@ const RecognitionAi = () => {
 										id="exampleFormControlSelect1"
 										onChange={e => setTransLan(e.target.value)}>
 										<option value={"es"}>Spanish</option>
-										<option value={"en"}>English </option>
-										<option value={"nl"}>Dutch </option>
-										<option value={"fr"}>French </option>
-										<option value={"de"}>German </option>
-										<option value={"ru"}>Russian </option>
+										<option value={"en"}>English</option>
+										<option value={"pt"}>Portuguese</option>
+										<option value={"it"}>Italian</option>
+										<option value={"fr"}>French</option>
+										<option value={"tr"}>Turkish</option>
+										<option value={"pl"}>Polish</option>
+										<option value={"nl"}>Dutch</option>
+										<option value={"de"}>German</option>
+										<option value={"ru"}>Russian</option>
+										<option value={"ar"}>Arabic</option>
+										<option value={"ja"}>Japanese</option>
+										<option value={"zh"}>Chinese (Simplified)</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
-
 					<div className="container recongnition_section">
 						<div className="row">
 							<div
@@ -124,22 +143,32 @@ const RecognitionAi = () => {
 							</div>
 							<div className="col-lg-3 mt-2 mb-2">
 								<ul className="list-group overflow-auto">
-									{store.apiResults.map(element => (
+									{store.apiResults.map(word => (
 										<li
 											className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-											key={element}>
-											{element}
+											key={word}>
+											{word}
+											<a
+												className="btn btn-outline-info text-info btn-sm"
+												onClick={() => actions.setFavorite({ word })}>
+												<i className="far fa-bookmark fa-spin" />
+											</a>
 										</li>
 									))}
 								</ul>
 							</div>
 							<div className="col-lg-3 mt-2 mb-2">
 								<ul className="list-group overflow-auto">
-									{store.googleResults.map(element => (
+									{store.googleResults.map(word => (
 										<li
 											className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-											key={element}>
-											{element}
+											key={word}>
+											{word}
+											<a
+												className="btn btn-outline-info text-info btn-sm"
+												onClick={() => actions.setFavorite({ word })}>
+												<i className="far fa-bookmark fa-spin" />
+											</a>
 										</li>
 									))}
 								</ul>

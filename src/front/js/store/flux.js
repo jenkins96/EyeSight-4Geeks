@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logged: false,
 			apiResults: [],
 			googleResults: [],
-			url: []
+			url: [],
+			Favorite: []
 		},
 
 		actions: {
@@ -23,20 +24,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setUrl2: url => {
 				setStore(url);
-			},
-
-			getUrl: () => {
-				fetch("https://loremflickr.com/json/g/320/240/paris,girl/all", {
-					method: "GET",
-					body: JSON.stringify(),
-					headers: { "Content-type": "application/json;" }
-				})
-					.then(res => res.json())
-					.then(data => {
-						console.log("IMAGE", data);
-						// setStore({ user: data }, { registered: true });
-					})
-					.catch(err => console.log(err));
 			},
 
 			getToken: () => {
@@ -62,6 +49,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(data => {
 						setStore({ apiResults: data[0]["en"], googleResults: data[0]["es"] });
+					})
+					.catch(err => console.log(err));
+			},
+
+			setFavorite: word => {
+				fetch(process.env.BACKEND_URL + "/api/favorite", {
+					method: "POST",
+					body: JSON.stringify(word),
+					headers: { "Content-type": "application/json;" }
+				})
+					.then(res => res.json())
+					.then(data => {
+						console.log("Registered user comes with these inf:", data);
+						setStore({ Favorite: data });
 					})
 					.catch(err => console.log(err));
 			},
